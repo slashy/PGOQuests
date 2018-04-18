@@ -31,7 +31,6 @@
 /coverage
 /libpeerconnection.log
 npm-debug.log
-yarn-error.log
 testem.log
 /typings
 
@@ -40,5 +39,8 @@ testem.log
 /e2e/*.map
 
 # System Files
-.DS_Store
 Thumbs.db
+
+pgo_quest_api/vendor/
+pgo_quest_api/logs/*
+!pgo_quest_api/logs/README.md
