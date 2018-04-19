@@ -1,23 +1,38 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { AgmCoreModule } from '@agm/core';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-
+import { AppNavbarComponent } from './app-navbar/app-navbar.component';
+import { QuestListComponent } from './quest-list/quest-list.component';
+import { FilterOptionsComponent } from './filter-options/filter-options.component';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDividerModule,
+  MatIconModule,
+  MatListModule,
+} from '@angular/material';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppNavbarComponent,
+    QuestListComponent,
+    FilterOptionsComponent,
   ],
-  imports: [
-    BrowserModule,
-    MDBBootstrapModule.forRoot(),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCmjA2fXN5y1l1fbv0yRkkrG8F7UQmDxBE'
-    })
-  ],
+  imports:
+      [
+        BrowserModule,
+        NgbModule.forRoot(),
+        MatListModule,
+        MatIconModule,
+        MatDividerModule,
+        MatCardModule,
+        MatButtonModule,
+      ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

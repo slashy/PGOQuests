@@ -1,0 +1,31 @@
+<mat-card class="quest-card" *ngFor="let quest of quests">
+  <mat-card-header>
+    <div mat-card-avatar class="pokestop-header-image" [class.done]="quest.done"></div>
+    <mat-card-title>{{ quest.pokestop.name }}</mat-card-title>
+    <mat-card-subtitle>{{ quest.name }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      <!-- use https://github.com/apavlinovic/pokemon-go-imagery -->
+      {{ quest.reward.count }}x <img src="../../assets/icons/pokestop.png" title="{{quest.reward.name}}">
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>Open Google Maps</button>
+    <button mat-button>Teilen</button>
+  </mat-card-actions>
+</mat-card>
+
+<!--<mat-list>-->
+<!--<mat-list-item *ngFor="let message of messages">-->
+<!--<img matListAvatar src="../../assets/icons/pokestop-blue.png" height="48" width="48" />-->
+<!--<h3 matLine>{{message.from}}</h3>-->
+<!--<p matLine>-->
+<!--<span> {{message.subject}} </span>-->
+<!--</p>-->
+<!--<p matLine>-->
+<!--<span class="demo-2">{{message.content}}</span>-->
+<!--</p>-->
+<!--<mat-divider></mat-divider>-->
+<!--</mat-list-item>-->
+<!--</mat-list>-->
