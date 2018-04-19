@@ -1,0 +1,15 @@
+INSERT INTO reward (reward_name) VALUES ('REWARD_POKEMON');
+INSERT INTO reward (reward_name) VALUES ('REWARD_POKEBALL');
+INSERT INTO reward (reward_name) VALUES ('REWARD_POKEBALL_GREAT');
+INSERT INTO reward (reward_name) VALUES ('REWARD_POKEBALL_ULTRA');
+INSERT INTO reward (reward_name) VALUES ('REWARD_BERRY_RAZZ');
+INSERT INTO reward (reward_name) VALUES ('REWARD_BERRY_NANAB');
+INSERT INTO reward (reward_name) VALUES ('REWARD_BERRY_PINAP');
+INSERT INTO reward (reward_name) VALUES ('REWARD_BERRY_RAZZ_GOLDEN');
+INSERT INTO reward (reward_name) VALUES ('REWARD_POTION');
+INSERT INTO reward (reward_name) VALUES ('REWARD_POTION_SUPER');
+INSERT INTO reward (reward_name) VALUES ('REWARD_POTION_HYPER');
+INSERT INTO reward (reward_name) VALUES ('REWARD_POTION_MAX');
+INSERT INTO reward (reward_name) VALUES ('REWARD_REVIVE');
+INSERT INTO reward (reward_name) VALUES ('REWARD_REVIVE_MAX');
+INSERT INTO reward (reward_name) VALUES ('REWARD_CANDY_RARE');
