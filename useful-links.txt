@@ -1,0 +1,3 @@
+https://angular.io/guide/cheatsheet
+https://medium.com/codingthesmartway-com-blog/building-an-angular-5-project-with-bootstrap-4-and-firebase-4504ff7717c1
+https://netbasal.com/using-pipe-results-in-angular-templates-430683fa2213
