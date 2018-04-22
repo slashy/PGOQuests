@@ -1,31 +1,80 @@
-<mat-card class="quest-card" *ngFor="let quest of quests">
-  <mat-card-header>
-    <div mat-card-avatar class="pokestop-header-image" [class.done]="quest.done"></div>
-    <mat-card-title>{{ quest.pokestop.name }}</mat-card-title>
-    <mat-card-subtitle>{{ quest.name }}</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
-    <p>
-      <!-- use https://github.com/apavlinovic/pokemon-go-imagery -->
-      {{ quest.reward.count }}x <img src="../../assets/icons/pokestop.png" title="{{quest.reward.name}}">
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>Open Google Maps</button>
-    <button mat-button>Teilen</button>
-  </mat-card-actions>
-</mat-card>
+<mat-form-field>
+  <input matInput type="search" [(ngModel)]="searchText" placeholder="{{ 'app.text.search' | translate }}">
+  <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+<button mat-button (click)="expandFilters = !expandFilters">
+  <mat-icon>{{ expandFilters ? 'expand_more' : 'chevron_right' }}</mat-icon>
+  <span>{{'app.text.filter' | translate}}</span>
+</button>
+<button mat-button mat-icon-button (click)="expandOptions = !expandOptions">
+  <mat-icon>more_vert</mat-icon>
+</button>
 
-<!--<mat-list>-->
-<!--<mat-list-item *ngFor="let message of messages">-->
-<!--<img matListAvatar src="../../assets/icons/pokestop-blue.png" height="48" width="48" />-->
-<!--<h3 matLine>{{message.from}}</h3>-->
-<!--<p matLine>-->
-<!--<span> {{message.subject}} </span>-->
-<!--</p>-->
-<!--<p matLine>-->
-<!--<span class="demo-2">{{message.content}}</span>-->
-<!--</p>-->
-<!--<mat-divider></mat-divider>-->
-<!--</mat-list-item>-->
-<!--</mat-list>-->
+<div class="collapse" [ngbCollapse]="!expandOptions">
+  <span>{{'app.text.language' | translate}}</span>
+  <button mat-button mat-icon-button aria-label="de" (click)="switchLanguage('de')"><img src="assets/icons/flag-germany.png" width="15px"></button>
+  <button mat-button mat-icon-button aria-label="en" (click)="switchLanguage('en')"><img src="assets/icons/flag-usa.png" width="15px"></button>
+</div>
+
+<div class="collapse" [ngbCollapse]="!expandFilters">
+
+  <section class="filter-section">
+    <mat-slide-toggle
+      color="primary"
+      [(ngModel)]="filterOptions.onlyPokemon">
+      {{'app.text.polemon_only' | translate}}
+    </mat-slide-toggle>
+  </section>
+
+  <section class="filter-section filter-quests">
+    <ng-select
+      [items]="questTypes"
+      [multiple]="true"
+      [virtualScroll]="true"
+      [closeOnSelect]="true"
+      [hideSelected]="true"
+      bindLabel="name"
+      bindValue="type"
+      placeholder="{{'app.text.quest_types_only' | translate}}"
+      [(ngModel)]="filterOptions.onlyQuestTypes">
+    </ng-select>
+  </section>
+</div>
+
+
+<div class="quest-list">
+  <mat-card class="quest-card"
+            *ngFor="let quest of quests | filterPokemon: filterOptions.onlyPokemon | filterQuestTypes: filterOptions.onlyQuestTypes | search: searchText">
+    <mat-card-header>
+      <div mat-card-avatar class="pokestop-header-image" [class.done]="quest.done"></div>
+      <mat-card-title class="bold">{{ quest.pokestop_name }}</mat-card-title>
+      <mat-card-subtitle>{{ 'quest_name.' + quest.quest_name | translate }}</mat-card-subtitle>
+      <!-- ADDRESS HERE: http://maps.googleapis.com/maps/api/geocode/json?latlng=44.4647452,7.3553838 -->
+      <mat-card-subtitle>
+        <a [href]="getMapsUrl(quest)" target="_blank">{{ quest.pokestop_address }}</a>
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <!-- use https://github.com/apavlinovic/pokemon-go-imagery -->
+        <span class="reward" *ngIf="hasPkmn(quest)"><img class="pkmn"
+                                                         [src]="getPkmnImg(quest.pokemon_id)"></span>
+        <span class="reward" *ngIf="!hasPkmn(quest)">
+          <span class="bold item-spacer">{{ quest.reward_count > 1 ? quest.reward_count : '' }}</span>
+          <img class="item" [src]="getItemImg(quest.reward_name)"
+               [width]="'32'">
+        </span>
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="openLocation(quest)">{{'app.text.map' | translate}}</button>
+      <button mat-button>{{'app.text.share' | translate}}</button>
+      <button mat-button>{{'app.text.report' | translate}}</button>
+
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+

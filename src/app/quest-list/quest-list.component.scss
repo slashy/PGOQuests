@@ -1,13 +1,42 @@
+.quest-list {
+  margin-top: 25px;
+}
+
 .quest-card {
   width: 100%;
   margin-bottom: 10px;
 }
 
+.filter-section {
+  margin-top: 15px;
+}
+
+.filter-quests {
+  width: 320px;
+}
+
 .pokestop-header-image {
-  background-image: url('../../assets/icons/pokestop-blue.png');
+  background-image: url('../../assets/icons/stop/pokestop_open.png');
   background-size: cover;
 }
 
 .done {
-  background-image: url('../../assets/icons/pokestop-violette.png');
+  background-image: url('../../assets/icons/stop/pokestop_visited.png');
+}
+
+img {
+  .pkmn { width: 96px; };
+  .item { width: 32px; }
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.item-spacer {
+  margin: 0 5px 15px 15px;
+}
+
+.reward {
+  margin-left: 32px
 }

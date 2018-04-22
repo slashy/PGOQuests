@@ -13,3 +13,4 @@ INSERT INTO reward (reward_name) VALUES ('REWARD_POTION_MAX');
 INSERT INTO reward (reward_name) VALUES ('REWARD_REVIVE');
 INSERT INTO reward (reward_name) VALUES ('REWARD_REVIVE_MAX');
 INSERT INTO reward (reward_name) VALUES ('REWARD_CANDY_RARE');
+INSERT INTO reward (reward_name) VALUES ('REWARD_STARDUST');
