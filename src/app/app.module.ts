@@ -15,7 +15,7 @@ import {
   MatInputModule,
   MatSlideToggleModule,
   MatSelectModule,
-  MatToolbarModule,
+  MatToolbarModule, MatStepperModule,
 } from '@angular/material';
 
 import {FilterPokemonPipe} from './pipes/filter-pokemon.pipe';
@@ -31,6 +31,9 @@ import {FilterQuestTypesPipe} from './pipes/filter-quest-types.pipe';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {InsertQuestComponent} from './insert-quest/insert-quest.component';
+import {SelectLocationComponent} from './select-location/select-location.component';
+import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/language/', '.json');
@@ -46,6 +49,8 @@ export function createTranslateLoader(http: HttpClient) {
     AdminInterfaceComponent,
     AdminLoginComponent,
     FilterQuestTypesPipe,
+    InsertQuestComponent,
+    SelectLocationComponent,
   ],
   imports:
     [
@@ -68,8 +73,10 @@ export function createTranslateLoader(http: HttpClient) {
       MatButtonModule,
       MatFormFieldModule, MatInputModule, MatSlideToggleModule, MatSelectModule,
       MatToolbarModule,
+      MatStepperModule,
       AppRoutingModule,
       NgSelectModule,
+      LeafletModule.forRoot(),
     ],
   providers: [QuestListService],
   bootstrap: [AppComponent],

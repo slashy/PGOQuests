@@ -1,0 +1,35 @@
+<div class="container fill">
+  <mat-vertical-stepper class="stepper" [linear]="true">
+    <mat-step style="min-height: 500px" label="PokéStop auswählen" [completed]="pokestop_id > -1">
+      <ng-select class="pokestops"
+                 [items]="pokestops"
+                 [virtualScroll]="true"
+                 bindValue="pokestop_id"
+                 bindLabel="pokestop_name"
+                 placeholder="PokéStop"
+                 [(ngModel)]="pokestop_id">
+      </ng-select>
+      <div>
+        <button mat-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step label="Quest auswählen">
+      <ng-select
+        [items]="quests"
+        [virtualScroll]="true"
+        [closeOnSelect]="true"
+        [hideSelected]="true"
+        bindValue="pokestop_id"
+        bindLabel="pokestop_name"
+        placeholder="Quest"
+        [(ngModel)]="quest_id">
+      </ng-select>
+
+      <div>
+        <button mat-button matStepperPrevious="" type="button">Back</button>
+        <button mat-button matStepperNext type="button">Next</button>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

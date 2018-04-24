@@ -7,11 +7,13 @@ use Slim\Http\Response;
 
 $app->get('/pokemon[/{ids}]', function (Request $request, Response $response, array $args) {
   $response = $response->withHeader('Content-type', 'application/json');
+  $where = "1";
   if ($ids = $args['ids']) {
-    $query = "SELECT * FROM pokemon WHERE pokemon_id IN ($ids)";
-  } else {
-    $query = "SELECT * FROM pokemon";
+    $where = "pokemon_id IN ($ids)";
   }
+  $query = "SELECT * 
+            FROM pokemon
+            WHERE $where";
   $sth = $this->db->prepare($query);
   $sth->execute();
   $result = $sth->fetchAll();
@@ -19,9 +21,15 @@ $app->get('/pokemon[/{ids}]', function (Request $request, Response $response, ar
   return $response;
 });
 
-$app->get('/quests', function (Request $request, Response $response, array $args) {
+$app->get('/quest[/{quest_id}]', function (Request $request, Response $response, array $args) {
   $response = $response->withHeader('Content-type', 'application/json');
-  $query = "SELECT * FROM quest";
+  $where = "1";
+  if ($quest_id = $args['quest_id']) {
+    $where = "quest_id = '$quest_id'";
+  }
+  $query = "SELECT * 
+            FROM quest 
+            WHERE $where";
   $sth = $this->db->prepare($query);
   $sth->execute();
   $result = $sth->fetchAll();
@@ -29,13 +37,15 @@ $app->get('/quests', function (Request $request, Response $response, array $args
   return $response;
 });
 
-$app->get('/pokestops[/{stop_name}]', function (Request $request, Response $response, array $args) {
+$app->get('/pokestop[/{stop_name}]', function (Request $request, Response $response, array $args) {
   $response = $response->withHeader('Content-type', 'application/json');
+  $where = "1";
   if ($stop_name = $args['stop_name']) {
-    $query = "SELECT * FROM pokestop WHERE pokestop_url like '%$stop_name%' OR pokestop_name like '%$stop_name%' OR pokestop_address like '%$stop_name%'";
-  } else {
-    $query = "SELECT * FROM pokestop";
+    $where = "pokestop_url like '%$stop_name%' OR pokestop_name like '%$stop_name%' OR pokestop_address like '%$stop_name%'";
   }
+  $query = "SELECT pokestop_id, pokestop_name 
+            FROM pokestop
+            WHERE $where";
   $sth = $this->db->prepare($query);
   $sth->execute();
   $result = $sth->fetchAll();
@@ -43,7 +53,23 @@ $app->get('/pokestops[/{stop_name}]', function (Request $request, Response $resp
   return $response;
 });
 
-$app->get('/rewards', function (Request $request, Response $response, array $args) {
+$app->get('/pokestop_detail[/{stop_id}]', function (Request $request, Response $response, array $args) {
+  $response = $response->withHeader('Content-type', 'application/json');
+  $where = "1";
+  if ($stop_id = $args['stop_id']) {
+    $where = "pokestop_id = 'stop_id'";
+  }
+  $query = "SELECT * 
+            FROM pokestop
+            WHERE $where";
+  $sth = $this->db->prepare($query);
+  $sth->execute();
+  $result = $sth->fetchAll();
+  $response->getBody()->write(json_encode($result));
+  return $response;
+});
+
+$app->get('/reward', function (Request $request, Response $response, array $args) {
   $response = $response->withHeader('Content-type', 'application/json');
   $query = "SELECT * FROM reward";
   $sth = $this->db->prepare($query);
@@ -53,7 +79,7 @@ $app->get('/rewards', function (Request $request, Response $response, array $arg
   return $response;
 });
 
-$app->get('/quest_types', function (Request $request, Response $response, array $args) {
+$app->get('/quest_type', function (Request $request, Response $response, array $args) {
   $response = $response->withHeader('Content-type', 'application/json');
   $query = "SELECT * FROM quest_type";
   $sth = $this->db->prepare($query);
@@ -65,11 +91,30 @@ $app->get('/quest_types', function (Request $request, Response $response, array 
 
 $app->get('/quest_pokemon[/{quest_id}]', function (Request $request, Response $response, array $args) {
   $response = $response->withHeader('Content-type', 'application/json');
+  $where = "1";
   if ($quest_id = $args['quest_id']) {
-    $query = "SELECT * FROM quest_has_pokemon WHERE quest_id = '$quest_id'";
-  } else {
-    $query = "SELECT * FROM quest_has_pokemon";
+    $where = "quest_id = '$quest_id'";
   }
+  $query = "SELECT * 
+            FROM quest_has_pokemon
+            WHERE $where";
+  $sth = $this->db->prepare($query);
+  $sth->execute();
+  $result = $sth->fetchAll();
+  $response->getBody()->write(json_encode($result));
+  return $response;
+});
+
+$app->get('/quest_reward[/{quest_id}]', function (Request $request, Response $response, array $args) {
+  $response = $response->withHeader('Content-type', 'application/json');
+  $where = "1";
+  if ($quest_id = $args['quest_id']) {
+    $where = "quest_id = '$quest_id'";
+  }
+  $query = "SELECT *
+            FROM quest_has_reward 
+            NATURAL JOIN reward
+            WHERE $where";
   $sth = $this->db->prepare($query);
   $sth->execute();
   $result = $sth->fetchAll();

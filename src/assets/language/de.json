@@ -835,7 +835,7 @@
         "QUEST_CATCH_BUG_3": "Fange 3 Pokemon vom Typ Käfer",
         "QUEST_CATCH_DARK_3": "Fange 3 Pokemon vom Typ Unlicht",
         "QUEST_CATCH_DITTO": "Fange ein Ditto",
-        "QUEST_CATCH_DRANGON": "Fange ein Drachen-Pokemon",
+        "QUEST_CATCH_DRAGON": "Fange ein Drachen-Pokemon",
         "QUEST_CATCH_ELECTRIC_3": "Fange 3 Pokemon vom Typ Elektro",
         "QUEST_CATCH_FIRE_3": "Fange 3 Pokemon vom Typ Feuer",
         "QUEST_CATCH_FLYING_3": "Fange 3 Pokemon vom Typ Flug",
@@ -900,6 +900,6 @@
         "QUEST_TYPE_OTHER": "Sonstige",
         "QUEST_TYPE_POKESTOP": "Drehe PokéStops",
         "QUEST_TYPE_RAID": "Kämpfe in Raids",
-        "QUEST_TYPE_THROW": "Würfe"
+        "QUEST_TYPE_THROW": "Pokéball würfe"
     }
 }

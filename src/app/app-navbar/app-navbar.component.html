@@ -1,3 +1,11 @@
 <nav class="navbar navbar-dark bg-dark">
-  <h1><a href="" class="navbar-brand">{{'app.title' | translate}}</a></h1>
+  <h1><a class="navbar-brand" [routerLink]="['']">Pokemon GO Quests Bonn</a></h1>
+  <ul class="list-inline">
+    <li class="nav-item list-inline-item">
+      <button mat-raised-button color="primary" [routerLink]="['']"><mat-icon>list</mat-icon> Übersicht</button>
+    </li>
+    <li class="nav-item list-inline-item">
+      <button mat-raised-button color="primary" [routerLink]="['add-quest']"><mat-icon>add_box</mat-icon> Quest eintragen</button>
+    </li>
+  </ul>
 </nav>

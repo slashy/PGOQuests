@@ -1,48 +1,60 @@
-<mat-form-field>
-  <input matInput type="search" [(ngModel)]="searchText" placeholder="{{ 'app.text.search' | translate }}">
-  <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
-    <mat-icon>close</mat-icon>
+<div class="container filter-content">
+  <mat-form-field>
+    <input matInput type="search" [(ngModel)]="searchText" placeholder="{{ 'app.text.search' | translate }}">
+    <button mat-button *ngIf="searchText" matSuffix mat-icon-button aria-label="Clear" (click)="searchText=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-button (click)="expandFilters = !expandFilters">
+    <mat-icon>{{ expandFilters ? 'expand_more' : 'chevron_right' }}</mat-icon>
+    <span>{{'app.text.filter' | translate}}</span>
   </button>
-</mat-form-field>
-<button mat-button (click)="expandFilters = !expandFilters">
-  <mat-icon>{{ expandFilters ? 'expand_more' : 'chevron_right' }}</mat-icon>
-  <span>{{'app.text.filter' | translate}}</span>
-</button>
-<button mat-button mat-icon-button (click)="expandOptions = !expandOptions">
-  <mat-icon>more_vert</mat-icon>
-</button>
+  <button mat-button mat-icon-button (click)="expandOptions = !expandOptions">
+    <mat-icon>more_vert</mat-icon>
+  </button>
 
-<div class="collapse" [ngbCollapse]="!expandOptions">
-  <span>{{'app.text.language' | translate}}</span>
-  <button mat-button mat-icon-button aria-label="de" (click)="switchLanguage('de')"><img src="assets/icons/flag-germany.png" width="15px"></button>
-  <button mat-button mat-icon-button aria-label="en" (click)="switchLanguage('en')"><img src="assets/icons/flag-usa.png" width="15px"></button>
+  <div class="collapse" [ngbCollapse]="!expandOptions">
+    <span>{{'app.text.language' | translate}}</span>
+    <button mat-button mat-icon-button aria-label="de" (click)="switchLanguage('de')"><img
+      src="assets/icons/flag-germany.png" width="15px"></button>
+    <button mat-button mat-icon-button aria-label="en" (click)="switchLanguage('en')"><img
+      src="assets/icons/flag-usa.png"
+      width="15px"></button>
+  </div>
+
+  <div class="collapse" [ngbCollapse]="!expandFilters">
+
+    <section class="filter-section">
+      <mat-slide-toggle
+        color="primary"
+        [(ngModel)]="filterOptions.onlyPokemon">
+        {{'app.text.polemon_only' | translate}}
+      </mat-slide-toggle>
+    </section>
+
+    <section class="filter-section filter-quests">
+      <ng-select
+        [items]="questTypes"
+        [multiple]="true"
+        [virtualScroll]="true"
+        [closeOnSelect]="true"
+        [hideSelected]="true"
+        bindValue="quest_type_name"
+        placeholder="{{'app.text.quest_types_only' | translate}}"
+        [(ngModel)]="filterOptions.onlyQuestTypes">
+
+        <ng-template ng-label-tmp let-item="item" let-clear="clear">
+          <span class="ng-value-label">{{ 'quest_type.' + item.quest_type_name | translate }}</span>
+          <span class="ng-value-icon right" (click)="clear(item); $event.stopPropagation()" aria-hidden="true">×</span>
+        </ng-template>
+
+        <ng-template ng-option-tmp let-item="item">
+          {{ 'quest_type.' + item.quest_type_name | translate }}
+        </ng-template>
+      </ng-select>
+    </section>
+  </div>
 </div>
-
-<div class="collapse" [ngbCollapse]="!expandFilters">
-
-  <section class="filter-section">
-    <mat-slide-toggle
-      color="primary"
-      [(ngModel)]="filterOptions.onlyPokemon">
-      {{'app.text.polemon_only' | translate}}
-    </mat-slide-toggle>
-  </section>
-
-  <section class="filter-section filter-quests">
-    <ng-select
-      [items]="questTypes"
-      [multiple]="true"
-      [virtualScroll]="true"
-      [closeOnSelect]="true"
-      [hideSelected]="true"
-      bindLabel="name"
-      bindValue="type"
-      placeholder="{{'app.text.quest_types_only' | translate}}"
-      [(ngModel)]="filterOptions.onlyQuestTypes">
-    </ng-select>
-  </section>
-</div>
-
 
 <div class="quest-list">
   <mat-card class="quest-card"
@@ -51,7 +63,6 @@
       <div mat-card-avatar class="pokestop-header-image" [class.done]="quest.done"></div>
       <mat-card-title class="bold">{{ quest.pokestop_name }}</mat-card-title>
       <mat-card-subtitle>{{ 'quest_name.' + quest.quest_name | translate }}</mat-card-subtitle>
-      <!-- ADDRESS HERE: http://maps.googleapis.com/maps/api/geocode/json?latlng=44.4647452,7.3553838 -->
       <mat-card-subtitle>
         <a [href]="getMapsUrl(quest)" target="_blank">{{ quest.pokestop_address }}</a>
       </mat-card-subtitle>

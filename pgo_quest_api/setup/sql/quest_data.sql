@@ -22,7 +22,7 @@ INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_DITTO',(SELEC
 INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_WEATHER_20',(SELECT quest_type_id FROM quest_type WHERE quest_type_name = 'QUEST_TYPE_CATCH'));
 INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_WEATHER_10',(SELECT quest_type_id FROM quest_type WHERE quest_type_name = 'QUEST_TYPE_CATCH'));
 INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_PLANT_FIRE_GROUND_3',(SELECT quest_type_id FROM quest_type WHERE quest_type_name = 'QUEST_TYPE_CATCH'));
-INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_DRANGON',(SELECT quest_type_id FROM quest_type WHERE quest_type_name = 'QUEST_TYPE_CATCH'));
+INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_DRAGON',(SELECT quest_type_id FROM quest_type WHERE quest_type_name = 'QUEST_TYPE_CATCH'));
 INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_NORMAL_10',(SELECT quest_type_id FROM quest_type WHERE quest_type_name = 'QUEST_TYPE_CATCH'));
 INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_FIRE_3',(SELECT quest_type_id FROM quest_type WHERE quest_type_name = 'QUEST_TYPE_CATCH'));
 INSERT INTO quest (quest_name, quest_type_id) VALUES ('QUEST_CATCH_FLYING_3',(SELECT quest_type_id FROM quest_type WHERE quest_type_name = 'QUEST_TYPE_CATCH'));

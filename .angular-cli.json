@@ -10,7 +10,16 @@
       "assets": [
         "assets",
         "favicon.ico",
-        { "glob": "*.png", "input": "../node_modules/pokemon-sprites/sprites/pokemon/", "output": "./assets/icons/pokemon" }
+        {
+          "glob": "*.png",
+          "input": "../node_modules/pokemon-sprites/sprites/pokemon/",
+          "output": "./assets/icons/pokemon"
+        },
+        {
+          "glob": "**/*",
+          "input": "../node_modules/leaflet/dist/images",
+          "output": "./assets/"
+        }
       ],
       "index": "index.html",
       "main": "main.ts",
@@ -20,7 +29,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../node_modules/leaflet/dist/leaflet.css"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
