@@ -97,6 +97,7 @@ $app->get('/quest_pokemon[/{quest_id}]', function (Request $request, Response $r
   }
   $query = "SELECT * 
             FROM quest_has_pokemon
+            NATURAL JOIN pokemon
             WHERE $where";
   $sth = $this->db->prepare($query);
   $sth->execute();
@@ -138,6 +139,31 @@ $app->get('/questlist', function (Request $request, Response $response, array $a
   $sth = $this->db->prepare($query);
   $sth->execute();
   $result = $sth->fetchAll();
+  $response->getBody()->write(json_encode($result));
+  return $response;
+});
+
+
+
+$app->get('/insert_quest/{pokestop_id}/{quest_id}/{reward_id}[/{pokemon_id}]', function (Request $request, Response $response, array $args) {
+  $response = $response->withHeader('Content-type', 'application/json');
+
+  $pokestop_id = $args['pokestop_id'];
+  $quest_id = $args['quest_id'];
+  $reward_id = $args['reward_id'];
+  $pokemon_id = $args['pokemon_id'];
+
+  $query = "INSERT INTO pokestop_has_quest(pokestop_id, quest_id, reward_id, pokemon_id) VALUES(:pokestop_id,:quest_id,:reward_id,:pokemon_id)";
+  $sth = $this->db->prepare($query);
+  $sth->bindParam(':pokestop_id', $pokestop_id, PDO::PARAM_INT);
+  $sth->bindParam(':quest_id', $quest_id, PDO::PARAM_INT);
+  $sth->bindParam(':reward_id', $reward_id, PDO::PARAM_INT);
+  $sth->bindParam(':pokemon_id', $pokemon_id, $pokemon_id === NULL ? PDO::PARAM_NULL : PDO::PARAM_INT);
+  try {
+    $result = ["status" => $sth->execute()];
+  } catch (\PDOException $ex) {
+    $result = ["error" => ["code" => $ex->getCode(), "message" => $ex->getMessage()]];
+  }
   $response->getBody()->write(json_encode($result));
   return $response;
 });

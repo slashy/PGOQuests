@@ -1,6 +1,6 @@
 <div class="container fill">
   <div>
-    <span>1. PokéStop eintragen</span>
+    <span>PokéStop eintragen</span>
     <ng-select class="pokestops"
                [items]="pokestops"
                [virtualScroll]="true"
@@ -11,46 +11,66 @@
     </ng-select>
   </div>
 
-  <div *ngIf="pokestop_id>-1">
-    <span>2. Quest eintragen</span>
+  <div *ngIf="pokestop_id">
+    <span><strong>Quest eintragen</strong></span>
     <ng-select
       [items]="quests"
       [virtualScroll]="true"
       bindValue="quest_id"
       bindLabel="quest_name"
       placeholder="Quest"
+      [searchFn]=""
       (change)="getRewards(quest_id)"
       [(ngModel)]="quest_id">
-
-      <ng-template ng-label-tmp let-item="item" *ngIf="quest_id>-1" let-clear="clear">
-        <span class="ng-value-label">{{ 'quest_name.' + item.quest_name | translate }}</span>
-        <span class="ng-value-icon right" (click)="clear(item); $event.stopPropagation()" aria-hidden="true">×</span>
-      </ng-template>
-
-      <ng-template ng-option-tmp let-item="item">
-        {{ 'quest_name.' + item.quest_name | translate }}
-      </ng-template>
     </ng-select>
+    <button *ngIf="!quest_id" mat-button type="button" (click)="pokestop_id = null; quest_id = null;">
+      <mat-icon>keyboard_backspace</mat-icon>
+      Zurück
+    </button>
   </div>
 
-  <div *ngIf="quest_id>-1">
-    <span>3. Belohnung eintragen</span>
+  <div *ngIf="quest_id">
+    <span><strong>Belohnung eintragen</strong></span>
     <ng-select
       [items]="rewards"
       [virtualScroll]="true"
       bindValue="reward_id"
       bindLabel="reward_name"
       placeholder="Quest"
+      [searchFn]=""
+      (change)="getPokemon(reward_id)"
       [(ngModel)]="reward_id">
-
-      <ng-template ng-label-tmp let-item="item" *ngIf="reward_id>-1"  let-clear="clear">
-        <span class="ng-value-label">{{ 'quest_reward.' + item.reward_name | translate }}</span>
-        <span class="ng-value-icon right" (click)="clear(item); $event.stopPropagation()" aria-hidden="true">×</span>
-      </ng-template>
-
-      <ng-template ng-option-tmp let-item="item">
-        {{ 'quest_reward.' + item.reward_name | translate }}
-      </ng-template>
     </ng-select>
+    <div *ngIf="reward_id !== '1'">
+      <button mat-button type="button" (click)="quest_id = null; reward_id = null">
+        <mat-icon>keyboard_backspace</mat-icon>
+        Zurück
+      </button>
+      <button mat-button (click)="sendData()">
+        <mat-icon>send</mat-icon>
+        Absenden
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="reward_id === '1'">
+    <span><strong>Pokémon auswählen</strong></span>
+    <ng-select
+      [items]="pokemon"
+      [virtualScroll]="true"
+      bindValue="pokemon_id"
+      bindLabel="pokemon_name"
+      placeholder="Quest"
+      [searchFn]=""
+      [(ngModel)]="pokemon_id">
+    </ng-select>
+    <button mat-button type="button" (click)="quest_id = null; reward_id = null; pokemon_id = null">
+      <mat-icon>keyboard_backspace</mat-icon>
+      Zurück
+    </button>
+    <button mat-button (click)="sendData()">
+      <mat-icon>send</mat-icon>
+      Absenden
+    </button>
   </div>
 </div>

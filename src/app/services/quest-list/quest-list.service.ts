@@ -4,11 +4,33 @@ import {TranslateService} from '@ngx-translate/core';
 @Injectable()
 export class QuestListService {
 
-  constructor() {
+  constructor(private translationService: TranslateService) {
+  }
+
+  getPokemon(quest_id) {
+    let result = [
+      {
+        'pokemon_id': '129',
+        'quest_id': '44',
+        'pokemon_name': 'POKEMON_129',
+      },
+    ];
+
+    result = [
+      {quest_id: quest_id, pokemon_id: null, pokemon_name: 'POKEMON_0'},
+      ...result].map((pokemon) => {
+      this.translationService.get('pokemon.' + pokemon.pokemon_name).
+        subscribe((res) => {
+          pokemon.pokemon_name = res;
+        });
+      return pokemon;
+    });
+
+    return result;
   }
 
   getRewards(quest_id) {
-    const result = [
+    let result = [
       {
         'reward_id': '13',
         'quest_id': '9',
@@ -35,11 +57,19 @@ export class QuestListService {
       },
     ];
 
+    result = result.map((reward) => {
+      this.translationService.get('quest_reward.' + reward.reward_name).
+        subscribe((res) => {
+          reward.reward_name = res;
+        });
+      return reward;
+    });
+
     return result.filter((reward) => reward.quest_id === quest_id);
   }
 
   getQuests() {
-    return [
+    let quests = [
       {
         'quest_id': '1',
         'quest_type_id': '8',
@@ -311,6 +341,15 @@ export class QuestListService {
         'quest_name': 'QUEST_ARENA_FIGHT_5',
       },
     ];
+
+    quests = quests.map((quest) => {
+      this.translationService.get('quest_name.' + quest.quest_name).
+        subscribe((res) => {
+          quest.quest_name = res;
+        });
+      return quest;
+    });
+    return quests;
   }
 
   getPokeStops() {
