@@ -7,6 +7,312 @@ export class QuestListService {
   constructor() {
   }
 
+  getRewards(quest_id) {
+    const result = [
+      {
+        'reward_id': '13',
+        'quest_id': '9',
+        'reward_count': '5',
+        'reward_name': 'REWARD_REVIVE',
+      },
+      {
+        'reward_id': '15',
+        'quest_id': '29',
+        'reward_count': '3',
+        'reward_name': 'REWARD_CANDY_RARE',
+      },
+      {
+        'reward_id': '1',
+        'quest_id': '44',
+        'reward_count': null,
+        'reward_name': 'REWARD_POKEMON',
+      },
+      {
+        'reward_id': '2',
+        'quest_id': '44',
+        'reward_count': '10',
+        'reward_name': 'REWARD_POKEBALL',
+      },
+    ];
+
+    return result.filter((reward) => reward.quest_id === quest_id);
+  }
+
+  getQuests() {
+    return [
+      {
+        'quest_id': '1',
+        'quest_type_id': '8',
+        'quest_name': 'QUEST_POWERUP_POKEMON_5',
+      },
+      {
+        'quest_id': '2',
+        'quest_type_id': '7',
+        'quest_name': 'QUEST_EGG_5',
+      },
+      {
+        'quest_id': '3',
+        'quest_type_id': '7',
+        'quest_name': 'QUEST_EGG_3',
+      },
+      {
+        'quest_id': '4',
+        'quest_type_id': '7',
+        'quest_name': 'QUEST_EGG',
+      },
+      {
+        'quest_id': '5',
+        'quest_type_id': '8',
+        'quest_name': 'QUEST_POWERUP_POKEMON_5',
+      },
+      {
+        'quest_id': '6',
+        'quest_type_id': '7',
+        'quest_name': 'QUEST_EGG_5',
+      },
+      {
+        'quest_id': '7',
+        'quest_type_id': '7',
+        'quest_name': 'QUEST_EGG_3',
+      },
+      {
+        'quest_id': '8',
+        'quest_type_id': '7',
+        'quest_name': 'QUEST_EGG',
+      },
+      {
+        'quest_id': '9',
+        'quest_type_id': '6',
+        'quest_name': 'QUEST_STOP_3',
+      },
+      {
+        'quest_id': '10',
+        'quest_type_id': '6',
+        'quest_name': 'QUEST_STOP_NEW_3',
+      },
+      {
+        'quest_id': '11',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_CURVE_ROW_5',
+      },
+      {
+        'quest_id': '12',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_EXCELLENT_ROW_3',
+      },
+      {
+        'quest_id': '13',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_EXCELLENT_3',
+      },
+      {
+        'quest_id': '14',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_EXCELLENT',
+      },
+      {
+        'quest_id': '15',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_GREAT_CURVE_ROW_3',
+      },
+      {
+        'quest_id': '16',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_GREAT_CURVE_3',
+      },
+      {
+        'quest_id': '17',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_GREAT_ROW_5',
+      },
+      {
+        'quest_id': '18',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_GREAT_ROW_3',
+      },
+      {
+        'quest_id': '19',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_GREAT_5',
+      },
+      {
+        'quest_id': '20',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_CURVE_ROW_3',
+      },
+      {
+        'quest_id': '21',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_ROW_3',
+      },
+      {
+        'quest_id': '22',
+        'quest_type_id': '5',
+        'quest_name': 'QUEST_THROW_3',
+      },
+      {
+        'quest_id': '23',
+        'quest_type_id': '4',
+        'quest_name': 'QUEST_EVOLVE_FIRE_5',
+      },
+      {
+        'quest_id': '24',
+        'quest_type_id': '4',
+        'quest_name': 'QUEST_EVOLVE',
+      },
+      {
+        'quest_id': '25',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_DITTO',
+      },
+      {
+        'quest_id': '26',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_WEATHER_20',
+      },
+      {
+        'quest_id': '27',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_WEATHER_10',
+      },
+      {
+        'quest_id': '28',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_PLANT_FIRE_GROUND_3',
+      },
+      {
+        'quest_id': '29',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_DRAGON',
+      },
+      {
+        'quest_id': '30',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_NORMAL_10',
+      },
+      {
+        'quest_id': '31',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_FIRE_3',
+      },
+      {
+        'quest_id': '32',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_FLYING_3',
+      },
+      {
+        'quest_id': '33',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_ELECTRIC_3',
+      },
+      {
+        'quest_id': '34',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_DARK_3',
+      },
+      {
+        'quest_id': '35',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_BUG_3',
+      },
+      {
+        'quest_id': '36',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_POISON_3',
+      },
+      {
+        'quest_id': '37',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_MEOWTH_SKITTY_3',
+      },
+      {
+        'quest_id': '38',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_TREECKO_MUDKIP_3',
+      },
+      {
+        'quest_id': '39',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_PIDGEY_MURKROW_3',
+      },
+      {
+        'quest_id': '40',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_ODDISH_BELLSRPOUT_3',
+      },
+      {
+        'quest_id': '41',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_SWABLU_3',
+      },
+      {
+        'quest_id': '42',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_BERRY_5',
+      },
+      {
+        'quest_id': '43',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_BERRY',
+      },
+      {
+        'quest_id': '44',
+        'quest_type_id': '3',
+        'quest_name': 'QUEST_CATCH_10',
+      },
+      {
+        'quest_id': '45',
+        'quest_type_id': '2',
+        'quest_name': 'QUEST_RAID_LEVEL_3',
+      },
+      {
+        'quest_id': '46',
+        'quest_type_id': '2',
+        'quest_name': 'QUEST_RAID_WIN_5',
+      },
+      {
+        'quest_id': '47',
+        'quest_type_id': '2',
+        'quest_name': 'QUEST_RAID_WIN_3',
+      },
+      {
+        'quest_id': '48',
+        'quest_type_id': '2',
+        'quest_name': 'QUEST_RAID_WIN',
+      },
+      {
+        'quest_id': '49',
+        'quest_type_id': '1',
+        'quest_name': 'QUEST_ARENA_WIN_3',
+      },
+      {
+        'quest_id': '50',
+        'quest_type_id': '1',
+        'quest_name': 'QUEST_ARENA_WIN',
+      },
+      {
+        'quest_id': '51',
+        'quest_type_id': '1',
+        'quest_name': 'QUEST_ARENA_SUPEREFFECTIVE_CHARGE_ATTACK_7',
+      },
+      {
+        'quest_id': '52',
+        'quest_type_id': '1',
+        'quest_name': 'QUEST_ARENA_SUPEREFFECTIVE_CHARGE_ATTACK',
+      },
+      {
+        'quest_id': '53',
+        'quest_type_id': '1',
+        'quest_name': 'QUEST_ARENA_FIGHT',
+      },
+      {
+        'quest_id': '54',
+        'quest_type_id': '1',
+        'quest_name': 'QUEST_ARENA_FIGHT_5',
+      },
+    ];
+  }
+
   getPokeStops() {
     return [
       {

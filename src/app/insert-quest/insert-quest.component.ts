@@ -9,6 +9,7 @@ import {QuestListService} from '../services/quest-list/quest-list.service';
 export class InsertQuestComponent implements OnInit {
   pokestops: any[] = [];
   quests: any[] = [];
+  rewards: any[] = [];
 
   pokestop_id = -1;
   quest_id = -1;
@@ -17,6 +18,11 @@ export class InsertQuestComponent implements OnInit {
 
   constructor(@Inject(QuestListService) public questListService) {
     this.pokestops = questListService.getPokeStops();
+    this.quests = this.questListService.getQuests();
+  }
+
+  getRewards(quest_id: number) {
+    this.rewards = this.questListService.getRewards(quest_id);
   }
 
   ngOnInit() {

@@ -1,35 +1,56 @@
 <div class="container fill">
-  <mat-vertical-stepper class="stepper" [linear]="true">
-    <mat-step style="min-height: 500px" label="PokéStop auswählen" [completed]="pokestop_id > -1">
-      <ng-select class="pokestops"
-                 [items]="pokestops"
-                 [virtualScroll]="true"
-                 bindValue="pokestop_id"
-                 bindLabel="pokestop_name"
-                 placeholder="PokéStop"
-                 [(ngModel)]="pokestop_id">
-      </ng-select>
-      <div>
-        <button mat-button matStepperNext type="button">Next</button>
-      </div>
-    </mat-step>
+  <div>
+    <span>1. PokéStop eintragen</span>
+    <ng-select class="pokestops"
+               [items]="pokestops"
+               [virtualScroll]="true"
+               bindValue="pokestop_id"
+               bindLabel="pokestop_name"
+               placeholder="PokéStop"
+               [(ngModel)]="pokestop_id">
+    </ng-select>
+  </div>
 
-    <mat-step label="Quest auswählen">
-      <ng-select
-        [items]="quests"
-        [virtualScroll]="true"
-        [closeOnSelect]="true"
-        [hideSelected]="true"
-        bindValue="pokestop_id"
-        bindLabel="pokestop_name"
-        placeholder="Quest"
-        [(ngModel)]="quest_id">
-      </ng-select>
+  <div *ngIf="pokestop_id>-1">
+    <span>2. Quest eintragen</span>
+    <ng-select
+      [items]="quests"
+      [virtualScroll]="true"
+      bindValue="quest_id"
+      bindLabel="quest_name"
+      placeholder="Quest"
+      (change)="getRewards(quest_id)"
+      [(ngModel)]="quest_id">
 
-      <div>
-        <button mat-button matStepperPrevious="" type="button">Back</button>
-        <button mat-button matStepperNext type="button">Next</button>
-      </div>
-    </mat-step>
-  </mat-vertical-stepper>
+      <ng-template ng-label-tmp let-item="item" *ngIf="quest_id>-1" let-clear="clear">
+        <span class="ng-value-label">{{ 'quest_name.' + item.quest_name | translate }}</span>
+        <span class="ng-value-icon right" (click)="clear(item); $event.stopPropagation()" aria-hidden="true">×</span>
+      </ng-template>
+
+      <ng-template ng-option-tmp let-item="item">
+        {{ 'quest_name.' + item.quest_name | translate }}
+      </ng-template>
+    </ng-select>
+  </div>
+
+  <div *ngIf="quest_id>-1">
+    <span>3. Belohnung eintragen</span>
+    <ng-select
+      [items]="rewards"
+      [virtualScroll]="true"
+      bindValue="reward_id"
+      bindLabel="reward_name"
+      placeholder="Quest"
+      [(ngModel)]="reward_id">
+
+      <ng-template ng-label-tmp let-item="item" *ngIf="reward_id>-1"  let-clear="clear">
+        <span class="ng-value-label">{{ 'quest_reward.' + item.reward_name | translate }}</span>
+        <span class="ng-value-icon right" (click)="clear(item); $event.stopPropagation()" aria-hidden="true">×</span>
+      </ng-template>
+
+      <ng-template ng-option-tmp let-item="item">
+        {{ 'quest_reward.' + item.reward_name | translate }}
+      </ng-template>
+    </ng-select>
+  </div>
 </div>
