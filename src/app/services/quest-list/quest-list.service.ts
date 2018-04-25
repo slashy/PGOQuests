@@ -17,11 +17,11 @@ export class QuestListService {
     ];
 
     result = [
-      {quest_id: quest_id, pokemon_id: null, pokemon_name: 'POKEMON_0'},
+      {quest_id: quest_id, pokemon_id: '0', pokemon_name: 'POKEMON_0'},
       ...result].map((pokemon) => {
       this.translationService.get('pokemon.' + pokemon.pokemon_name).
         subscribe((res) => {
-          pokemon.pokemon_name = res;
+          pokemon['pokemon_name_trans'] = res;
         });
       return pokemon;
     });
@@ -60,7 +60,7 @@ export class QuestListService {
     result = result.map((reward) => {
       this.translationService.get('quest_reward.' + reward.reward_name).
         subscribe((res) => {
-          reward.reward_name = res;
+          reward['reward_name_trans'] = res;
         });
       return reward;
     });
@@ -345,7 +345,7 @@ export class QuestListService {
     quests = quests.map((quest) => {
       this.translationService.get('quest_name.' + quest.quest_name).
         subscribe((res) => {
-          quest.quest_name = res;
+          quest['quest_name_trans'] = res;
         });
       return quest;
     });

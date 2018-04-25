@@ -43,4 +43,5 @@ Thumbs.db
 
 pgo_quest_api/vendor/
 pgo_quest_api/logs/*
+pgo_quest_api/setup/*
 !pgo_quest_api/logs/README.md

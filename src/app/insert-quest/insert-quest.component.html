@@ -1,5 +1,5 @@
 <div class="container fill">
-  <div>
+  <div class="step">
     <span>PokéStop eintragen</span>
     <ng-select class="pokestops"
                [items]="pokestops"
@@ -11,13 +11,13 @@
     </ng-select>
   </div>
 
-  <div *ngIf="pokestop_id">
+  <div *ngIf="pokestop_id" class="step">
     <span><strong>Quest eintragen</strong></span>
     <ng-select
       [items]="quests"
       [virtualScroll]="true"
       bindValue="quest_id"
-      bindLabel="quest_name"
+      bindLabel="quest_name_trans"
       placeholder="Quest"
       [searchFn]=""
       (change)="getRewards(quest_id)"
@@ -29,17 +29,25 @@
     </button>
   </div>
 
-  <div *ngIf="quest_id">
+  <div *ngIf="quest_id" class="step">
     <span><strong>Belohnung eintragen</strong></span>
     <ng-select
       [items]="rewards"
       [virtualScroll]="true"
       bindValue="reward_id"
-      bindLabel="reward_name"
+      bindLabel="reward_name_trans"
       placeholder="Quest"
       [searchFn]=""
       (change)="getPokemon(reward_id)"
       [(ngModel)]="reward_id">
+      <ng-template ng-label-tmp let-item="item" let-clear="clear">
+        <span class="ng-value-label">{{ (item.reward_count ? item.reward_count + ' ' : '') + item.reward_name_trans }}</span>
+        <span class="ng-value-icon right" (click)="clear(item); $event.stopPropagation()" aria-hidden="true">×</span>
+      </ng-template>
+
+      <ng-template ng-option-tmp let-item="item">
+        {{ (item.reward_count ? item.reward_count + 'x ' : '') + item.reward_name_trans }}
+      </ng-template>
     </ng-select>
     <div *ngIf="reward_id !== '1'">
       <button mat-button type="button" (click)="quest_id = null; reward_id = null">
@@ -53,13 +61,13 @@
     </div>
   </div>
 
-  <div *ngIf="reward_id === '1'">
+  <div *ngIf="reward_id === '1'" class="step">
     <span><strong>Pokémon auswählen</strong></span>
     <ng-select
       [items]="pokemon"
       [virtualScroll]="true"
       bindValue="pokemon_id"
-      bindLabel="pokemon_name"
+      bindLabel="pokemon_name_trans"
       placeholder="Quest"
       [searchFn]=""
       [(ngModel)]="pokemon_id">

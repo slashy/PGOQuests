@@ -16,7 +16,7 @@ export class InsertQuestComponent implements OnInit {
   pokestop_id: string | null = null;
   quest_id: string | null = null;
   reward_id: string | null = null;
-  pokemon_id: string | null = null;
+  pokemon_id: string | null = '0';
 
   constructor(
     @Inject(QuestListService) public questListService,
