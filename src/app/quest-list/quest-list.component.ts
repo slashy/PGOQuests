@@ -48,12 +48,11 @@ export class QuestListComponent implements OnInit, OnChanges {
 
   // noinspection JSMethodCanBeStatic
   hasPkmn(quest: any | null) {
-    return  quest.hasOwnProperty('reward_name') && quest.reward_name === 'REWARD_POKEMON' ||
-            quest.hasOwnProperty('pokemon_id') && quest.pokemon_id;
+    return  quest.hasOwnProperty('reward_name') && quest.reward_name === 'REWARD_POKEMON';
   }
 
   // noinspection JSMethodCanBeStatic
-  getPkmnImg(pokemon_id: number | null) {
+  getPkmnImg(pokemon_id: string | null) {
     return PKMN_BASEDIR + pokemon_id + '.png';
   }
 

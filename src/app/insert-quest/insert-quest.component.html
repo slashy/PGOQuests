@@ -8,6 +8,10 @@
                bindLabel="pokestop_name"
                placeholder="PokéStop"
                [(ngModel)]="pokestop_id">
+      <ng-template ng-label-tmp ng-option-tmp let-item="item">
+        <img height="25" width="25" [src]="'assets/icons/stop/pokestop_open.png'"/>
+        {{item.pokestop_name}}
+      </ng-template>
     </ng-select>
   </div>
 
@@ -40,13 +44,9 @@
       [searchFn]=""
       (change)="getPokemon(reward_id)"
       [(ngModel)]="reward_id">
-      <ng-template ng-label-tmp let-item="item" let-clear="clear">
+      <ng-template ng-label-tmp ng-option-tmp let-item="item" let-clear="clear">
+        <img height="25" width="25" [src]="'assets/icons/items/' + item.reward_name.toLowerCase() + '.png'"/>
         <span class="ng-value-label">{{ (item.reward_count ? item.reward_count + ' ' : '') + item.reward_name_trans }}</span>
-        <span class="ng-value-icon right" (click)="clear(item); $event.stopPropagation()" aria-hidden="true">×</span>
-      </ng-template>
-
-      <ng-template ng-option-tmp let-item="item">
-        {{ (item.reward_count ? item.reward_count + 'x ' : '') + item.reward_name_trans }}
       </ng-template>
     </ng-select>
     <div *ngIf="reward_id !== '1'">
@@ -71,6 +71,10 @@
       placeholder="Quest"
       [searchFn]=""
       [(ngModel)]="pokemon_id">
+      <ng-template ng-label-tmp ng-option-tmp let-item="item" let-clear="clear">
+        <img height="25" width="25" [src]="'assets/icons/pokemon/' + (item.pokemon_id === '0' ? 'null' : item.pokemon_id) + '.png'"/>
+        <span class="ng-value-label">{{ item.pokemon_name_trans }}</span>
+      </ng-template>
     </ng-select>
     <button mat-button type="button" (click)="quest_id = null; reward_id = null; pokemon_id = null">
       <mat-icon>keyboard_backspace</mat-icon>

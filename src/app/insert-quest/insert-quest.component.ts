@@ -25,38 +25,14 @@ export class InsertQuestComponent implements OnInit {
     this.quests = this.questListService.getQuests();
   }
 
-  getRewards(quest_id: number) {
+  getRewards(quest_id: string) {
     this.rewards = this.questListService.getRewards(quest_id);
   }
 
-  getPokemon(quest_id: number) {
+  getPokemon(quest_id: string) {
     if (this.reward_id.toString() === '1') {
       this.pokemon = this.questListService.getPokemon(quest_id);
     }
-  }
-
-  searchQuest(term: string, item: any, translationService: any) {
-
-    translationService.get('quest_name.' + item.quest_name).
-      subscribe((res) => {
-        return res.includes(term);
-      });
-  }
-
-  searchReward(term: string, item: any, translationService: any) {
-
-    translationService.get('quest_reward.' + item.reward_name).
-      subscribe((res) => {
-        return res.includes(term);
-      });
-  }
-
-  searchPokemon(term: string, item: any, translationService: any) {
-
-    translationService.get('pokemon.' + item.pokemon_name).
-      subscribe((res) => {
-        return res.includes(term);
-      });
   }
 
   sendData() {

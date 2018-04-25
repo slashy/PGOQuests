@@ -68,15 +68,27 @@
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <p>
-        <!-- use https://github.com/apavlinovic/pokemon-go-imagery -->
-        <span class="reward" *ngIf="hasPkmn(quest)"><img class="pkmn"
-                                                         [src]="getPkmnImg(quest.pokemon_id)"></span>
-        <span class="reward" *ngIf="!hasPkmn(quest)">
+      <div *ngIf="hasPkmn(quest)">
+        <p *ngIf="quest.pokemon_id">
+          <span class="reward">
+            <img class="pkmn" [src]="getPkmnImg(quest.pokemon_id)">
+          </span>
+        </p>
+        <div class="pokemon-list" *ngIf="quest.hasOwnProperty('quest_pokemon')">
+          <p>
+            <span class="reward">Mögliche Pokemon:</span>
+          </p>
+          <p>
+            <img *ngFor="let pokemon of quest.quest_pokemon" class="reward pkmn" [width]="'54'"
+                 [src]="getPkmnImg(pokemon.pokemon_id)">
+          </p>
+        </div>
+      </div>
+      <p *ngIf="!hasPkmn(quest)">
+        <span class="reward">
           <span class="bold item-spacer">{{ quest.reward_count > 1 ? quest.reward_count : '' }}</span>
-          <img class="item" [src]="getItemImg(quest.reward_name)"
-               [width]="'32'">
-        </span>
+          <img class="item" [src]="getItemImg(quest.reward_name)" [width]="'32'">
+      </span>
       </p>
     </mat-card-content>
     <mat-card-actions>
